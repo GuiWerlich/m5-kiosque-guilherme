@@ -2,13 +2,14 @@ from menu import products
 
 def get_product_by_id(_id: int):
 
-    if not isinstance(_id, int):
+    if not type(_id) == int:
         raise TypeError("product id must be an int")
     
     try:
         for product in products:
             if product["_id"] == _id:
                 return product
+        return {}        
     except TypeError:
         return "product id must be an int"
         
@@ -16,8 +17,7 @@ def get_product_by_id(_id: int):
 def get_product_by_type(type: str):
 
     if not isinstance(type, str):
-        raise TypeError("product type must be a str")
-    
+        raise TypeError("product type must be a str")    
     try:
         type_list = []
         for product in products:
@@ -29,16 +29,16 @@ def get_product_by_type(type: str):
     
 
 def add_product(menu, **kwargs):
-    products_list = menu
-
-    if len(products_list) == 0:
+    
+    if len(menu) == 0:
         new_id = 1
     else:
-        max_id = max(item['_id'] for item in products_list)
+        max_id = max(item['_id'] for item in menu)
         new_id = max_id + 1
     
-    kwargs['_id'] = new_id    
-    products_list.append(kwargs)
+    kwargs['_id'] = new_id
+    menu.append(kwargs)
+    
     return kwargs
 
 
