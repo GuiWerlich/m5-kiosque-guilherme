@@ -45,17 +45,25 @@ def add_product(menu, **kwargs):
 def menu_report():
     product_count = len(products)
 
-    if product_count == 0:
-        return "No products available"
-
     total_price = sum(product["price"] for product in products)
     average_price = total_price / product_count
 
     type_counts = {}
+
     for product in products:
         product_type = product["type"]
-        type_counts[product_type] = type_counts.get(product_type, 0) + 1
+        
+        if product_type in type_counts:
+            type_counts[product_type] += 1
+        else:
+            type_counts[product_type] = 1
 
-    most_common_type = max(type_counts, key=type_counts.get)
+    most_common_type = None
+    max_count = 0
+
+    for product_type, count in type_counts.items():
+        if count > max_count:
+            max_count = count
+            most_common_type = product_type
 
     return f"Products Count: {product_count} - Average Price: ${average_price:.2f} - Most Common Type: {most_common_type}"

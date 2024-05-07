@@ -4,7 +4,7 @@ from menu import products
 
 if __name__ == "__main__":
 
-    print (get_product_by_id(1))
+    print(get_product_by_id(1))
     print(get_product_by_type("fruit"))
 
     new_product = {
