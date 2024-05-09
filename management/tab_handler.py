@@ -7,6 +7,7 @@ def calculate_tab(consumption: list):
         for product in products:
             if product["_id"] == product_id:
                 subtotal += product["price"] * item["amount"]
-                
-    return {"subtotal": f"{subtotal:.2f}"}
+
+    subtotal = round(subtotal, 2)
+    return {"subtotal": f"${subtotal}"}
         

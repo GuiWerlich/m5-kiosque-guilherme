@@ -14,7 +14,7 @@ def get_product_by_id(_id: int):
         return "product id must be an int"
         
         
-def get_product_by_type(type: str):
+def get_products_by_type(type: str):
 
     if not isinstance(type, str):
         raise TypeError("product type must be a str")    
@@ -66,4 +66,4 @@ def menu_report():
             max_count = count
             most_common_type = product_type
 
-    return f"Products Count: {product_count} - Average Price: ${average_price:.2f} - Most Common Type: {most_common_type}"
+    return f"Products Count: {product_count} - Average Price: ${average_price:.1f} - Most Common Type: {most_common_type}"
